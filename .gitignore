@@ -1,12 +1,13 @@
-# Ignore Terraform cache and providers
+# Ignore Terraform cache, state, and sensitive files
 .terraform/
 .terraform.lock.hcl
-
-# Ignore Terraform state files (contain sensitive data)
 terraform.tfstate
 terraform.tfstate.backup
-
-# Ignore configuration files that may contain secrets
 *.tfvars
-*.log
 
+
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
