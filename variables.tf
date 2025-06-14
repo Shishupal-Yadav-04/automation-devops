@@ -17,3 +17,19 @@ variable "role_name" {
   description = "Name of the IAM role"
   type        = string
 }
+
+variable "db_identifier" {
+  description = "RDS instance identifier"
+  type        = string
+}
+
+variable "db_username" {
+  description = "RDS master username"
+  type        = string
+}
+
+variable "db_password" {
+  description = "RDS master password"
+  type        = string
+  sensitive   = true
+}

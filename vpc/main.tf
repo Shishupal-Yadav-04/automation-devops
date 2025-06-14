@@ -1,3 +1,9 @@
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
+
+
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
   enable_dns_support   = true
@@ -24,7 +30,7 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnets[count.index]
   map_public_ip_on_launch = true
-  availability_zone       = "${var.region}a"
+  availability_zone       = data.aws_availability_zones.available.names[count.index]
   tags = merge(var.tags, {
     Name = "awsproj-public-${count.index + 1}"
   })
@@ -41,7 +47,7 @@ resource "aws_subnet" "private" {
   count             = length(var.private_subnets)
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnets[count.index]
-  availability_zone = "${var.region}b"
+  availability_zone = data.aws_availability_zones.available.names[count.index]
   tags = merge(var.tags, {
     Name = "awsproj-private-${count.index + 1}"
   })
