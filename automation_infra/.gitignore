@@ -1,0 +1,8 @@
+.terraform/
+automation_infra/.terraform/modules
+automation_infra/.terraform/providers/registry.terraform.io
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+*.log
